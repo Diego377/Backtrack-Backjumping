@@ -1,6 +1,7 @@
 from Schedule import Schedule
 from Speaker import Speaker
 from collections import deque
+from queue import PriorityQueue
 
 class Event:
     csp = Schedule()
@@ -18,22 +19,36 @@ class Event:
         #     if time[] == day:
         #         sp.removeSpeakTime(day,hour)
         Xe = self.FindSpeaker(sp)
+        #Copy is made in case the assignment is inconsistent and we need to restore the values of the domain
+        copy = Xe.SpeakTime 
         Xe.addSpeakTime(day,hour)
-        
+
         for aux in Xe.Neighbors:
             neighbor = self.FindSpeaker(aux)
             neighbor.removeSpeakTime(day,hour)
             if len(neighbor.SpeakTime) == 0:
-                print("Asignacion inconsistente")
+                print("Inconsistent assignment")
             else :
-                print("Asignacion consistente")
-            #Registrar primero con dominio completo, luego elegir un horario y cambiar el dominio de sus vecinos 
+                print("Consistent assignment")
     
-    def MRV(speaker):
-        orderedValues = deque()
-        for Xi in Event.speakers:
-            orderedValues.append(Xi,len(Xi.SpeakTime))
-        return orderedValues.pop()
+    def MRV(self, idSpeaker):
+
+        orderedValues = PriorityQueue()
+        size = 30
+        Xi = self.FindSpeaker(idSpeaker)
+        for aux in Xi.Neighbors:
+            neighbor = self.FindSpeaker(aux)
+            if len(neighbor.SpeakTime) < size:
+                orderedValues.put([len(neighbor.SpeakTime),neighbor.Name])
+        
+        resp = orderedValues.get()
+        print(resp)
+        return resp
+
+        # orderedValues = deque()
+        # for Xi in Event.speakers:
+        #     orderedValues.append(Xi,len(Xi.SpeakTime))
+        # return orderedValues.pop()
 
     def LeastConstrainedValue(self, speaker):
         stack = []
@@ -56,7 +71,7 @@ class Event:
         self.LeastConstrainedValue(var)
         self.ForwardChecking(var,day,hour)
         
-    def AddSpeaker(self, sp, Area):
+    def AddSpeaker(self, sp, Area, NationalOrInt):
         # print("Enter the id: ")
         # Id = input()
         # print("Enter the name: ")
@@ -72,8 +87,12 @@ class Event:
         # sp = Speaker(Id,Name,NationalOrInt,Area)
         #sp.addSpeakTime(day,hour)
 
+        #Neighbors are addedd if the "area" or the "national or international" values are the same
         for speaker in self.speakers:
             if speaker.Area == Area:
+                speaker.AddNeighbor(sp.Id)
+                sp.AddNeighbor(speaker.Id)
+            if speaker.NationalOrInt == NationalOrInt:
                 speaker.AddNeighbor(sp.Id)
                 sp.AddNeighbor(speaker.Id)
             # for d in sp.Days:

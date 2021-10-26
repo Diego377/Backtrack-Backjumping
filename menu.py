@@ -7,12 +7,13 @@ if (__name__ == '__main__'):
     main = Schedule()
     option = 0
     
-    while(option != 4):
+    while(option != 5):
         
         print("Choose an option: \n")
         print("1. Check in")
-        print("2. Choose a day and time")
-        print("3. Exit")
+        print("2. Assign a day and time")
+        print("3. Show speakers")
+        print("4. MRV")
         option = input()
 
         if option == "1":
@@ -37,10 +38,8 @@ if (__name__ == '__main__'):
             
             sp = Speaker(Id,Name,NationalOrInt,Area)
             
-            event.AddSpeaker(sp,Area)
+            event.AddSpeaker(sp,Area, NationalOrInt)
             
-            
-        
         if option == "2":
             #main.showSchedule()
             event.showSpeakers()
@@ -50,7 +49,7 @@ if (__name__ == '__main__'):
             day = input()
             print("Which hour do you want to register in? Type A for 9 to 10, B for 10 to 11, C for 11 to 12, D for 15 to 16, E for 16 to 17 or F for 17 to 18")
             hour = input()
-            
+
             event.ForwardChecking(spId,day,hour)
         
         if option == "3":
@@ -60,3 +59,8 @@ if (__name__ == '__main__'):
                 # event.sp1.ShowSpeaker()
                 # event.sp3.ShowSpeaker()
             
+        if option == "4":
+            event.showSpeakers()
+            print("Select a speaker by id :")
+            spId = input()
+            event.MRV(spId)

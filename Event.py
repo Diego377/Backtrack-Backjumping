@@ -5,10 +5,10 @@ from queue import PriorityQueue
 
 class Event:
     csp = Schedule()
-    sp1 = Speaker(1,'Dudas','Nat','IA',3)
-    sp2 = Speaker(2,'Gaby','Nat','Sec',2)
-    sp3 = Speaker(3,'Sammy','Int','IA',3)
-    sp4 = Speaker(4,'Seibu','Int','IngeSoft',4)
+    sp1 = Speaker(1,'Diego','Nat','SI',3)
+    sp2 = Speaker(2,'Gabriela','Nat','Inge Soft',2)
+    sp3 = Speaker(3,'Sam','Int','Inge soft',3)
+    sp4 = Speaker(4,'Sebas','Int','IA',4)
     speakers = [sp1,sp2,sp3,sp4]
     aux = 10
 
@@ -82,19 +82,6 @@ class Event:
 
         print( AllConstraintValues)
         return AllConstraintValues
-
-        # stack = []
-        # AllConstraintValues = stack
-        
-        # for v in speaker.SpeakTime:
-        #     temp_x = self.speakers
-        #     self.ForwardChecking(speaker,v[0],v[1])
-        #     consistentValues = 0
-        #     for Xi in speaker.Neighbors:
-        #         consistentValues = len(Xi.SpeakTime)
-        #     AllConstraintValues.append(v,consistentValues)
-        #     self.speakers = temp_x
-        # return AllConstraintValues.pop()
 
     def Backtrack(self, sp, day, hour, w, csp):
         # if assignment.state == 'Complete':

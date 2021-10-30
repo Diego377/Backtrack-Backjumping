@@ -13,28 +13,28 @@ class Event:
     aux = 10
 
     def ForwardChecking(self,sp,day, hour):
-
-        #sp.addSpeakTime(day,hour)
-        # for time in sp.SpeakTime:
-        #     if time[] == day:
-        #         sp.removeSpeakTime(day,hour)
+        
         Xe = self.FindSpeaker(sp)
+        cont = 0
         #Copy is made in case the assignment is inconsistent and we need to restore the values of the domain
         #copy = Xe.SpeakTime.copy() 
-        #Xe.addSpeakTime(day,hour)
+        #Xe.addSpeakTime(day,hour)=
 
         for aux in Xe.Neighbors:
             neighbor = self.FindSpeaker(aux)
-            copy = neighbor.SpeakTime.copy()
+            if cont == 0:
+                copy = neighbor.SpeakTime.copy()
+                cont = 1
+
             neighbor.removeSpeakTime(day,hour)
+            neighbor.SpeakTime = copy
 
             if len(neighbor.SpeakTime) == 0:
                 print("Inconsistent assignment")
             else :
                 print("Consistent assignment")
-        neighbor.SpeakTime = copy
         
-        Xe.SpeakTime = copy
+        #Xe.SpeakTime = copy
     
     def MRV(self, idSpeaker):
 
@@ -73,12 +73,9 @@ class Event:
                 neighbor = self.FindSpeaker(aux)
                 consistentValues = consistentValues + len(neighbor.SpeakTime)
 
-            
             AllConstraintValues.append([v,consistentValues])
 
             sp.SpeakTime = temp_x
-            #print("prueba:" + str(v[0])+","+str(v[1]))
-            #sp.removeSpeakTime(sp.SpeakTime[v][0],sp.SpeakTime[v][1])
 
         print( AllConstraintValues)
         return AllConstraintValues
@@ -91,20 +88,6 @@ class Event:
         self.ForwardChecking(var,day,hour)
         
     def AddSpeaker(self, sp, Area, NationalOrInt):
-        # print("Enter the id: ")
-        # Id = input()
-        # print("Enter the name: ")
-        # Name = input()
-        # print("Is national (Nat) or international (Int)?: ")
-        # NationalOrInt = input()
-        # print("Enter the area: ")
-        # Area = input()
-        # print("Which day do you want to register in? Select a number: 1.Monday 2.Tuesday 3.Wednesday 4.Thursday 5.Friday")
-        # day = input()
-        # print("Which hour do you want to register in? Type A for 9 to 10, B for 10 to 11, C for 11 to 12, D for 15 to 16, E for 16 to 17 or F for 17 to 18")
-        # hour = input()
-        # sp = Speaker(Id,Name,NationalOrInt,Area)
-        #sp.addSpeakTime(day,hour)
 
         #Neighbors are addedd if the "area" or the "national or international" values are the same
         for speaker in self.speakers:

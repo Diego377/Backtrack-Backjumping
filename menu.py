@@ -53,6 +53,8 @@ if (__name__ == '__main__'):
             print("Which hour do you want to register in? Type A for 9 to 10, B for 10 to 11, C for 11 to 12, D for 15 to 16, E for 16 to 17 or F for 17 to 18")
             hour = input()
 
+            speaker = event.FindSpeaker(spId)
+            speaker.removeNextSpeakTime(day,hour)
             event.ForwardChecking(spId,day,hour)
         
         if option == "3":

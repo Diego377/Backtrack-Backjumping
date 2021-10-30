@@ -34,12 +34,24 @@ class Speaker:
     # Bind speaker to speak time
     def addSpeakTime(self, day, hour):
         self.Days.append(day)
-        self.SpeakTime.clear()
-        self.SpeakTime.append([int(day),hour])
+        time = self.identifyTime(day,hour)
+        #self.SpeakTime.clear()
+        #self.SpeakTime.append([int(day),hour])
     
     def removeSpeakTime(self,day,hour):
         aux = self.identifyTime(day,hour)
-        del self.SpeakTime[aux]
+        if aux == self.SpeakTime.keys():
+            del self.SpeakTime[aux]
+    
+    #This is to remove the times ahead and in the back of the time that it's been agregated
+    def removeNextSpeakTime(self,day,hour):
+        aux = self.identifyTime(day,hour)
+        aux = aux + 1
+        if aux == self.SpeakTime.keys():
+            del self.SpeakTime[aux]
+            aux = aux - 2
+            if aux == self.SpeakTime.keys():
+                del self.SpeakTime[aux]
 
     def ShowSpeaker(self):
         print("Id: " + str(self.Id))

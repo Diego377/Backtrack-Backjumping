@@ -7,13 +7,14 @@ if (__name__ == '__main__'):
     main = Schedule()
     option = 0
     
-    while(option != 5):
+    while(option != 6):
         
         print("Choose an option: \n")
         print("1. Check in")
         print("2. Assign a day and time")
         print("3. Show speakers")
         print("4. MRV")
+        print("5. Least constrained value")
         option = input()
 
         if option == "1":
@@ -31,12 +32,14 @@ if (__name__ == '__main__'):
             NationalOrInt = input()
             print("Enter the area: ")
             Area = input()
+            print("Enter the number of talks: ")
+            Talks = input()
             # print("Which day do you want to register in? Select a number: 1.Monday 2.Tuesday 3.Wednesday 4.Thursday 5.Friday")
             # day = input()
             # print("Which hour do you want to register in? Type A for 9 to 10, B for 10 to 11, C for 11 to 12, D for 15 to 16, E for 16 to 17 or F for 17 to 18")
             # hour = input()
             
-            sp = Speaker(Id,Name,NationalOrInt,Area)
+            sp = Speaker(Id,Name,NationalOrInt,Area,Talks)
             
             event.AddSpeaker(sp,Area, NationalOrInt)
             
@@ -64,3 +67,10 @@ if (__name__ == '__main__'):
             print("Select a speaker by id :")
             spId = input()
             event.MRV(spId)
+
+        if option == "5":
+            #errores en los dominios vecinos cuando se agrega una hora 
+            event.showSpeakers()
+            print("Select a speaker by id :")
+            spId = input()
+            event.LeastConstrainedValue(spId)

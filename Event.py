@@ -2,23 +2,17 @@ from Schedule import Schedule
 from Speaker import Speaker
 from collections import deque
 from queue import PriorityQueue
+import json
+
 
 class Event:
     csp = Schedule()
-    sp1 = Speaker(1,'Diego','Nat','SI',3)
-    sp2 = Speaker(2,'Gabriela','Nat','Inge Soft',2)
-    sp3 = Speaker(3,'Sam','Int','Inge soft',3)
-    sp4 = Speaker(4,'Sebas','Int','IA',4)
-    speakers = [sp1,sp2,sp3,sp4]
-    aux = 10
+    speakers = []
 
     def ForwardChecking(self,sp,day, hour):
         
         Xe = self.FindSpeaker(sp)
         cont = 0
-        #Copy is made in case the assignment is inconsistent and we need to restore the values of the domain
-        #copy = Xe.SpeakTime.copy() 
-        #Xe.addSpeakTime(day,hour)=
 
         for aux in Xe.Neighbors:
             neighbor = self.FindSpeaker(aux)
@@ -26,8 +20,10 @@ class Event:
                 copy = neighbor.SpeakTime.copy()
                 cont = 1
 
-            neighbor.removeSpeakTime(day,hour)
-            neighbor.SpeakTime = copy
+            aux2 = neighbor.identifyTime(day,hour)
+            if aux2 in neighbor.SpeakTime.keys():
+                neighbor.removeSpeakTime(day,hour)
+            #neighbor.SpeakTime = copy
 
             if len(neighbor.SpeakTime) == 0:
                 print("Inconsistent assignment")
@@ -94,7 +90,7 @@ class Event:
             if speaker.Area == Area:
                 speaker.AddNeighbor(sp.Id)
                 sp.AddNeighbor(speaker.Id)
-            if speaker.NationalOrInt == NationalOrInt:
+            if speaker.NationalOrInt == 'int' and speaker.NationalOrInt == NationalOrInt:
                 speaker.AddNeighbor(sp.Id)
                 sp.AddNeighbor(speaker.Id)
             # for d in sp.Days:
@@ -108,9 +104,16 @@ class Event:
 
     def FindSpeaker(self, idSpeaker):
         for sp in self.speakers:
-            if sp.Id == idSpeaker:
+            if int(sp.Id) == int(idSpeaker):
                 return sp
 
     def showSpeakers(self):
         for i in self.speakers:
             i.ShowSpeaker()
+
+    def readFile(self):
+        with open('data.json') as file:
+            data = json.load(file)
+        for speaker in data['speakers']:
+            sp = Speaker(int(speaker['Id']),speaker['Name'],speaker['NatOrInt'],speaker['Area'],speaker['Talks'])
+            self.AddSpeaker(sp,sp.Area,sp.NationalOrInt)

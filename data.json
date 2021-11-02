@@ -1,0 +1,25 @@
+{
+	"speakers": [
+		{
+			"Id":1,
+			"Name": "Pepe",
+			"NatOrInt": "nat",
+			"Area": "Seg inf",
+			"Talks": 2
+		},
+		{
+			"Id":2,
+			"Name": "Ale",
+			"NatOrInt": "int",
+			"Area": "Seg inf",
+			"Talks": 3
+		},
+		{
+			"Id":3,
+			"Name": "Steve",
+			"NatOrInt": "int",
+			"Area": "IA",
+			"Talks": 2
+		}
+	]
+}

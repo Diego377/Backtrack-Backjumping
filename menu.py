@@ -7,7 +7,7 @@ if (__name__ == '__main__'):
     main = Schedule()
     option = 0
     
-    while(option != 6):
+    while(option != 8):
         
         print("Choose an option: \n")
         print("1. Check in")
@@ -15,6 +15,7 @@ if (__name__ == '__main__'):
         print("3. Show speakers")
         print("4. MRV")
         print("5. Least constrained value")
+        print("6. Read file")
         option = input()
 
         if option == "1":
@@ -48,14 +49,19 @@ if (__name__ == '__main__'):
             event.showSpeakers()
             print("Select a speaker by id :")
             spId = input()
-            print("Which day do you want to register in? Select a number: 1.Monday 2.Tuesday 3.Wednesday 4.Thursday 5.Friday")
-            day = input()
-            print("Which hour do you want to register in? Type A for 9 to 10, B for 10 to 11, C for 11 to 12, D for 15 to 16, E for 16 to 17 or F for 17 to 18")
-            hour = input()
-
             speaker = event.FindSpeaker(spId)
-            speaker.removeNextSpeakTime(day,hour)
-            event.ForwardChecking(spId,day,hour)
+            talks = speaker.Talks
+            speaker.SpeakTime.clear()
+            for i in range(int(talks)):
+                print("Which day do you want to register in? Select a number: 1.Monday 2.Tuesday 3.Wednesday 4.Thursday 5.Friday")
+                day = input()
+                print("Which hour do you want to register in? \n A) for 9 to 10, \n B) for 10 to 11, \n C) for 11 to 12, \n D) for 15 to 16, \n E) for 16 to 17 or \n F) for 17 to 18")
+                hour = input()
+                speaker.addSpeakTime(day,hour)
+                if len(speaker.SpeakTime) > 1:
+                    speaker.removeNextSpeakTime(day,hour)
+                event.ForwardChecking(spId,day,hour)
+
         
         if option == "3":
             #event.sp1 = Speaker(1,'Dudas','Nat','IA')
@@ -76,3 +82,7 @@ if (__name__ == '__main__'):
             print("Select a speaker by id :")
             spId = input()
             event.LeastConstrainedValue(spId)
+
+        if option == "6":
+            event.readFile()
+        

@@ -35,21 +35,15 @@ class Event:
     def MRV(self, idSpeaker):
 
         orderedValues = PriorityQueue()
-        size = 30
         Xi = self.FindSpeaker(idSpeaker)
+        
         for aux in Xi.Neighbors:
             neighbor = self.FindSpeaker(aux)
-            if len(neighbor.SpeakTime) < size:
-                orderedValues.put([len(neighbor.SpeakTime),neighbor.Name])
+            orderedValues.put([len(neighbor.SpeakTime),neighbor.Name])
         
         resp = orderedValues.get()
         print(resp)
         return resp
-
-        # orderedValues = deque()
-        # for Xi in Event.speakers:
-        #     orderedValues.append(Xi,len(Xi.SpeakTime))
-        # return orderedValues.pop()
 
     def LeastConstrainedValue(self, idSpeaker):
         

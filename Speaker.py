@@ -12,24 +12,43 @@ class Speaker:
         #self.SpeakTime = []
         self.Days = []
         self.SpeakTime = {
-            66: [1,'A'],
-            67: [1,'B'],
-            68: [1,'C'],
-            69: [1,'D'],
-            70: [1,'E'],
-            71: [1,'F']
+            65: [1,'A'],
+            66: [1,'B'],
+            67: [1,'C'],
+            68: [1,'D'],
+            69: [1,'E'],
+            70: [1,'F'],
+            130: [2,'A'],
+            132: [2,'B'],
+            134: [2,'C'],
+            136: [2,'D'],
+            138: [2,'E'],
+            140: [2,'F'],
+            195: [3,'A'],
+            198: [3,'B'],
+            201: [3,'C'],
+            204: [3,'D'],
+            207: [3,'E'],
+            210: [3,'F'],
+            260: [4,'A'],
+            264: [4,'B'],
+            268: [4,'C'],
+            272: [4,'D'],
+            276: [4,'E'],
+            280: [4,'F'],
+            325: [5,'A'],
+            330: [5,'B'],
+            335: [5,'C'],
+            340: [5,'D'],
+            345: [5,'E'],
+            350: [5,'F']
         }
-        #[[1,'A'],[1,'B'],[1,'C'],[1,'D'],[1,'E'],[1,'F']],[2,'A'],[2,'B'],[2,'C'],[2,'D'],[2,'E'],[2,'F']]
-        # [3,'A'],[3,'B'],[3,'C'],[3,'D'],[3,'E'],[1,'F'],[4,'A'],[4,'B'],[4,'C'],[4,'D'],[4,'E'],[4,'F'],
-        # [5,'A'],[5,'B'],[5,'C'],[5,'D'],[5,'E'],[5,'F']]
         self.Neighbors = []
-
-    #def fillSpeakTime():
 
 
     def identifyTime(self,day,hour):
         resp = 0
-        resp = ord(hour) + int(day)
+        resp = ord(hour) * int(day)
         return resp
 
     # Bind speaker to speak time
@@ -44,7 +63,6 @@ class Speaker:
     
     def removeSpeakTime(self,day,hour):
         aux = self.identifyTime(day,hour)
-        #if int(aux) == self.SpeakTime.keys():
         del self.SpeakTime[aux]
     
     #This is to remove the times ahead and in the back of the time that it's been agregated

@@ -30,12 +30,18 @@ The Committee wants us to make an informatic program to organize the schedule.
  ![image](https://user-images.githubusercontent.com/58644744/140085793-f226c8e1-eb41-411f-bbc6-2590e76b9023.png)
 
  On the list of speakers we can see that we have 3 speakers. The first one has the area "Inf sec" like the second one, so that, they are neighbors. And the second one is international like the third one, so they are neighbors too. Each one of them has all the values of their domains at the beginning. 
+ The diagram that represents the graph is:
+ 
+ ![Untitled Diagram (1)](https://user-images.githubusercontent.com/58644744/140197889-102a5778-431b-446a-85d3-1de691d54fc0.jpg)
+
+ 
  ![image](https://user-images.githubusercontent.com/58644744/140086041-d2dde3d3-72a7-4175-8b85-aea9e5fb22fa.png)
 
-###Forward checking 
+### Forward checking 
  Next we have the **forward checking** algorithm which pretends to remove certain value from the domain of the neighbors of a speaker, in this case the value would be the hour that a speaker wants.
 For the experiment to check if the **forward checking algorithm** works fine, we have to add a speak time on any speaker, on the **add speaker algorithm** the **forward checking algorithm** is called with the id of the speaker on whom the speak time is been added and once we have done that the value (the speak time) should be gone in the domain of the neighbors.
 So if we assign the hour **1 A and 1 C** to the first speaker those values should not appear on the domain of the neighbors, in this case the only neighbor is speaker 2.
+
 ![image](https://user-images.githubusercontent.com/58644744/140092839-d39f3c01-b936-4885-a8eb-771e9dc349c7.png)
 
 As we can see, the only values on the speaker 1 domain are the added, the speaker 2 doesn't have those values on the domain and the domain of the speaker 3 was not affected because it's not a neighbor of speaker 1.
@@ -49,5 +55,5 @@ For the experiment we continue with the previous assignment and as the speaker 1
 The result is a tuple with the value 28 which represents the number of values in the domain of the speaker and the 2 in the tuple is the id of the speaker. 
 As we saw before the speaker 2 who is neighbor of speaker 1 has it's domain affected because of the **forward checking** and the time values that were added to speaker's 1 domain are no longer part of speaker's 2 domain, so that we have 28 values on the domain while speaker 3 has all the 30 values on it's domain.
 
-###Least Constrained value
+### Least Constrained value
 This heuristic is used to order the values of the domains of the neighbors so that we get how many of them are consistent.

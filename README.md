@@ -34,6 +34,7 @@ The Committee wants us to make an informatic program to organize the schedule.
  
  ![Untitled Diagram (1)](https://user-images.githubusercontent.com/58644744/140197889-102a5778-431b-446a-85d3-1de691d54fc0.jpg)
 
+If we load the file and then want to check the speakers from the terminal we get the next:
  
  ![image](https://user-images.githubusercontent.com/58644744/140086041-d2dde3d3-72a7-4175-8b85-aea9e5fb22fa.png)
 

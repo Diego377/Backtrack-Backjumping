@@ -24,4 +24,23 @@ The Committee wants us to make an informatic program to organize the schedule.
   Also in this class are all the algorithms implemented.
   
  ## Experiments
- First we have the forward checking algorithm which pretends to remove certain value from the domain of the neighbors of a speaker.
+ The first thing to do is to get a list of speakers, for the experiment this is done by reading the json file with the option 6 from the menu.
+ The json file looks like this:
+ ![image](https://user-images.githubusercontent.com/58644744/140085793-f226c8e1-eb41-411f-bbc6-2590e76b9023.png)
+
+ On the list of speakers we can see that we have 3 speakers. The first one has the area "Inf sec" like the second one, so that, they are neighbors. And the second one is international like the third one, so they are neighbors too. Each one of them has all the values of their domains at the beginning. 
+ ![image](https://user-images.githubusercontent.com/58644744/140086041-d2dde3d3-72a7-4175-8b85-aea9e5fb22fa.png)
+
+ 
+ Next we have the **forward checking** algorithm which pretends to remove certain value from the domain of the neighbors of a speaker, in this case the value would be the hour that a speaker wants.
+For the experiment to check if the **forward checking algorithm** works fine, we have to add a speak time on any speaker, on the **add speaker algorithm** the **forward checking algorithm** is called with the id of the speaker on whom the speak time is been added and once we have done that the value (the speak time) should be gone in the domain of the neighbors.
+So if we assign the hour **1 A and 1 C** to the first speaker those values should not appear on the domain of the neighbors, in this case the only neighbor is speaker 2.
+![image](https://user-images.githubusercontent.com/58644744/140092839-d39f3c01-b936-4885-a8eb-771e9dc349c7.png)
+
+As we can see, the only values on the speaker 1 domain are the added, the speaker 2 doesn't have those values on the domain and the domain of the speaker 3 was not affected because it's not a neighbor of speaker 1.
+
+Then we have the **Minimum remaining values algorithm** which pretends to choose the variable with the fewest consistent values between the neighbors of a speaker. The output of this algorithm is a tuple with the number of values (which should be the least amount) and the id of the speaker who owns the domain with that amount.
+For the experiment we continue with the previous assignment and as the speaker 1 is the one with values on its domain we will check the values of the speaker 1 neighbors.
+![image](https://user-images.githubusercontent.com/58644744/140095536-d2e479b5-f088-4da7-8e3a-6d91d5fe6c44.png)
+
+And this is the result.

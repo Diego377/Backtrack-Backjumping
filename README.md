@@ -26,6 +26,7 @@ The Committee wants us to make an informatic program to organize the schedule.
  ## Experiments
  The first thing to do is to get a list of speakers, for the experiment this is done by reading the json file with the option 6 from the menu.
  The json file looks like this:
+ 
  ![image](https://user-images.githubusercontent.com/58644744/140085793-f226c8e1-eb41-411f-bbc6-2590e76b9023.png)
 
  On the list of speakers we can see that we have 3 speakers. The first one has the area "Inf sec" like the second one, so that, they are neighbors. And the second one is international like the third one, so they are neighbors too. Each one of them has all the values of their domains at the beginning. 
@@ -40,7 +41,9 @@ So if we assign the hour **1 A and 1 C** to the first speaker those values shoul
 As we can see, the only values on the speaker 1 domain are the added, the speaker 2 doesn't have those values on the domain and the domain of the speaker 3 was not affected because it's not a neighbor of speaker 1.
 
 Then we have the **Minimum remaining values algorithm** which pretends to choose the variable with the fewest consistent values between the neighbors of a speaker. The output of this algorithm is a tuple with the number of values (which should be the least amount) and the id of the speaker who owns the domain with that amount.
-For the experiment we continue with the previous assignment and as the speaker 1 is the one with values on its domain we will check the values of the speaker 1 neighbors.
+For the experiment we continue with the previous assignment and as the speaker 1 is the one with values on its domain we will check the values of the speaker 1 neighbors, for that we introduce the id 1 when selecting the MRV option in the menu.
+
 ![image](https://user-images.githubusercontent.com/58644744/140095536-d2e479b5-f088-4da7-8e3a-6d91d5fe6c44.png)
 
-And this is the result.
+The result is a tuple with the value 28 which represents the number of values in the domain of the speaker and the 2 in the tuple is the id of the speaker. 
+As we saw before the speaker 2 who is neighbor of speaker 1 has it's domain affected because of the **forward checking** and the time values that were added to speaker's 1 domain are no longer part of speaker's 2 domain, so that we have 28 values on the domain while speaker 3 has all the 30 values on it's domain.

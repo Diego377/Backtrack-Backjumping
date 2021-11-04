@@ -58,6 +58,7 @@ As we saw before the speaker 2 who is neighbor of speaker 1 has it's domain affe
 
 ### Least Constrained value
 This heuristic is used to order the values of the domains of the neighbors so that we get how many of them are consistent.
+For this experiment we introduce 2 speakers manually, they're neighbors between them and we have assigned 3 times to the first one.
 
 ### Running the program
 To run the program open a new terminal and type **"python menu.py"** and the menu should appear. Then you can either add some speakers on your own with option 1 or you can load them from the json file with option 6. Then you can choose any other option to see how it works.
